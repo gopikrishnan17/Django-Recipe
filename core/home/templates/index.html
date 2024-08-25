@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recipe Haven</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: url('https://example.com/background-image.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: #f1f1f1;
+            animation: fadeIn 2s ease-in-out;
+            display: flex;
+        }
+        header {
+            background-color: rgba(34, 45, 50, 0.9);
+            padding: 20px;
+            text-align: center;
+            color: white;
+            animation: slideInFromTop 1s ease-out;
+        }
+        h1 {
+            margin: 0;
+            font-size: 3em;
+        }
+        .container {
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+            background-color: rgba(44, 62, 80, 0.95);
+            border-radius: 10px;
+            animation: fadeIn 3s ease-in-out;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+        .section {
+            margin: 40px 0;
+        }
+        .section h2 {
+            font-size: 2em;
+            color: #4CAF50; /* Changed to a more appealing green */
+            margin-bottom: 20px;
+            animation: fadeInLeft 1.5s ease;
+        }
+        .section p {
+            font-size: 1.2em;
+            line-height: 1.6;
+            margin: 0 0 20px;
+            animation: fadeInRight 1.5s ease;
+        }
+        .divider {
+            width: 0;
+            height: 3px;
+            background-color: #4CAF50; /* Matching the section title color */
+            margin: 30px auto;
+            animation: expand 2s ease forwards;
+        }
+        .button-container {
+            margin-top: 50px;
+        }
+        .button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 15px 30px;
+            font-size: 1.5em;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s;
+            text-decoration: none;
+            display: inline-block;
+            animation: pulse 2s infinite;
+        }
+        .button:hover {
+            background-color: #45a049;
+            transform: scale(1.1);
+        }
+        footer {
+            text-align: center;
+            padding: 1px;
+            background-color: rgba(34, 45, 50, 0.9);
+            color: white;
+            position: fixed;
+
+            width: 100%;
+            bottom: 0;
+            animation: slideInFromBottom 1s ease-out;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideInFromTop {
+            from { transform: translateY(-100%); }
+            to { transform: translateY(0); }
+        }
+
+        @keyframes slideInFromBottom {
+            from { transform: translateY(100%); }
+            to { transform: translateY(0); }
+        }
+
+        @keyframes fadeInLeft {
+            from { opacity: 0; transform: translateX(-20px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        @keyframes fadeInRight {
+            from { opacity: 0; transform: translateX(20px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        @keyframes expand {
+            from { width: 0; }
+            to { width: 100px; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Recipe Haven</h1>
+        <p>Your personal collection of delicious recipes</p>
+    </header>
+
+    <div class="container">
+        <div class="section">
+            <h2>Why Cooking is Essential</h2>
+            <p>Cooking at home allows you to control what goes into your meals, ensuring you and your family consume healthy and nutritious food. It also fosters creativity and can be a therapeutic activity that brings people together.</p>
+        </div>
+        <div class="divider"></div>
+
+        <div class="section">
+            <h2>Health Benefits of Good Food</h2>
+            <p>Eating a balanced diet filled with fruits, vegetables, whole grains, and lean proteins can boost your immune system, improve your mood, and increase your energy levels. Good food is the foundation of a healthy lifestyle.</p>
+        </div>
+        <div class="divider"></div>
+
+        <div class="section">
+            <h2>Good Food Habits</h2>
+            <p>Developing good food habits, like regular meal times, portion control, and mindful eating, can help you maintain a healthy weight and improve digestion. These habits contribute to long-term health and wellness.</p>
+        </div>
+
+        <div class="button-container">
+            <a href="/recipes/" class="button">View & Add Recipes</a>
+        </div>
+    </div>
+    <footer>
+        <p>Developed by Gopikrishnan as the first project to learn Django</p>
+    </footer>
+</body>
+</html>
