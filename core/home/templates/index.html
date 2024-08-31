@@ -153,7 +153,11 @@
         </div>
 
         <div class="button-container">
+            {% if request.user.is_authenticated %}
+            <a href="/recipes/" class="button">View & Add Recipes</a>
+            {% else %}
             <a href="/login/" class="button">View & Add Recipes</a>
+            {% endif %}
         </div>
     </div>
     <footer>

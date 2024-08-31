@@ -3,10 +3,12 @@ from .models import *
 from django.http import HttpResponse
 from django.contrib.auth.models import User
 from django.contrib import messages
-from django.contrib.auth import authenticate
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 
+@login_required(login_url='/login/')
 def recipes(request):
     if request.method == 'POST':
         data = request.POST
@@ -22,11 +24,13 @@ def recipes(request):
     context = {'recipes': queryset}
     return render(request, "recipes.html", context)
 
+@login_required(login_url='/login/')
 def del_recipe(request, id):
     queryset = Recipe.objects.get(id = id)
     queryset.delete()
     return redirect('/recipes/')
 
+@login_required(login_url='/login/')
 def update_recipe(request, id):
     queryset = Recipe.objects.get(id = id)
     if request.method == 'POST':
@@ -43,7 +47,7 @@ def update_recipe(request, id):
     context = {'recipe': queryset}
     return render(request, "update_recipes.html", context)
 
-def login(request):
+def login_page(request):
     if request.method == 'POST':
         data = request.POST
         email = data.get('email')
@@ -56,13 +60,18 @@ def login(request):
         else:
             user = authenticate(username=email, password=password)
             if user:
+                login(request, user)
                 return redirect('/recipes/')
             else:
                 messages.info(request,'Wrong Username/Password')
                 return redirect('/login/')
     return render(request,'login.html')
 
-def register(request):
+def logout_page(request):
+    logout(request)
+    return redirect('/')
+
+def register_page(request):
     if request.method == 'POST':
         data = request.POST
         email = data.get('email')
