@@ -28,6 +28,8 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path('del_recipe/<id>', del_recipe, name='del_recipe'),
     path('update_recipe/<id>', update_recipe, name='update_recipe'),
+    path("login/", login, name='login'),
+    path("register/", register, name='register'),
 ]
 
 if settings.DEBUG:
