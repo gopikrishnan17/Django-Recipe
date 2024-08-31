@@ -187,6 +187,23 @@
             from { transform: scale(0.8); opacity: 0; }
             to { transform: scale(1); opacity: 1; }
         }
+
+        .toggle-btn {
+            margin-bottom: 20px;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .toggle-btn:hover {
+            background-color: #0056b3;
+            transform: scale(1.05);
+        }
+
     </style>
 </head>
 <body>
@@ -217,6 +234,17 @@
             </fieldset>  
         </form>
 
+        <!-- Toggle Button -->
+        <form method="get">
+            <button type="submit" name="toggle" value="{% if show_all %}user{% else %}all{% endif %}" class="toggle-btn">
+                {% if show_all %}
+                    Show My Recipes
+                {% else %}
+                    Show All Recipes
+                {% endif %}
+            </button>
+        </form>
+
         <table class="table">
             <thead>
               <tr>
@@ -225,6 +253,7 @@
                 <th scope="col">Recipe Description</th>
                 <th scope="col">Image</th>
                 <th scope="col">Actions</th>
+                <th scope="col">Uploaded By</th>
               </tr>
             </thead>
             <tbody>
@@ -236,10 +265,20 @@
                 <td>
                     <img src="/media/{{ele.photo}}" alt="Recipe Image">
                 </td>
+                {% if ele.user == request.user %}
                 <td>
                     <a href="/del_recipe/{{ele.id}}" class="btn btn-danger-outline" style="background-color: red;">Delete</a><br><br>
                     <a href="/update_recipe/{{ele.id}}" class="btn btn-danger-outline" style="background-color: lightblue;">Update</a>
                 </td>
+                {% else %}
+                <td>No Actions Permitted</td>
+                {% endif %}
+
+                {% if ele.user %}
+                    <td>{{ele.user}}</td>
+                {% else %}
+                    <td>Anonymous User</td>
+                {% endif %}
               </tr>
               {% endfor %}
             </tbody>

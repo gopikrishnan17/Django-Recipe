@@ -11,17 +11,26 @@ from django.contrib.auth.decorators import login_required
 @login_required(login_url='/login/')
 def recipes(request):
     if request.method == 'POST':
+        user = request.user
         data = request.POST
         print(data)
         print(request.FILES.get('dish_img'))
         Recipe.objects.create(
             recepe_name = data.get('recipe_name'),
             recipe = data.get('recipe_desc'),
-            photo = request.FILES.get('dish_img')
+            photo = request.FILES.get('dish_img'),
+            user = user
         )
         return redirect('/recipes/')
     queryset = Recipe.objects.all()
-    context = {'recipes': queryset}
+
+    if request.method == 'GET':
+        show_all = request.GET.get('toggle') != 'user'
+        if show_all:
+            queryset = Recipe.objects.all()
+        else:
+            queryset = Recipe.objects.filter(user=request.user)        
+    context = {'recipes': queryset, 'show_all': show_all}
     return render(request, "recipes.html", context)
 
 @login_required(login_url='/login/')
